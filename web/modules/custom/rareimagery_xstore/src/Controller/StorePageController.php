@@ -115,7 +115,7 @@ class StorePageController extends ControllerBase {
    * Loads a store node by X handle.
    */
   protected function loadStoreByHandle(string $handle) {
-    $nodes = $this->entityTypeManager
+    $nodes = $this->entityTypeManager()
       ->getStorage('node')
       ->loadByProperties([
         'type' => 'x_creator_store',
