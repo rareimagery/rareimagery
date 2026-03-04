@@ -1,0 +1,11 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "include": ["src"],
+  "compilerOptions": {
+    "paths": {
+      "@rareimagery/types": ["../../packages/types/src"],
+      "@rareimagery/api": ["../../packages/api/src"],
+      "@rareimagery/ui": ["../../packages/ui/src"]
+    }
+  }
+}

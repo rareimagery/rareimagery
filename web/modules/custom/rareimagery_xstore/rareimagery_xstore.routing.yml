@@ -1,0 +1,42 @@
+rareimagery_xstore.store_page:
+  path: '/store/{x_handle}'
+  defaults:
+    _controller: '\Drupal\rareimagery_xstore\Controller\StorePageController::view'
+    _title_callback: '\Drupal\rareimagery_xstore\Controller\StorePageController::title'
+  requirements:
+    _permission: 'access content'
+    x_handle: '[a-zA-Z0-9_]+'
+
+rareimagery_xstore.printful_settings:
+  path: '/admin/config/rareimagery/printful'
+  defaults:
+    _form: '\Drupal\rareimagery_xstore\Form\PrintfulSettingsForm'
+    _title: 'Printful Settings'
+  requirements:
+    _permission: 'administer x creator stores'
+
+rareimagery_xstore.printful_webhook:
+  path: '/api/printful/webhook'
+  defaults:
+    _controller: '\Drupal\rareimagery_xstore\Controller\PrintfulWebhookController::handle'
+  requirements:
+    _access: 'TRUE'
+  methods: [POST]
+
+rareimagery_xstore.dashboard:
+  path: '/dashboard'
+  defaults:
+    _controller: '\Drupal\rareimagery_xstore\Controller\DashboardAppController::view'
+    _title: 'Store Dashboard'
+  requirements:
+    _permission: 'manage own x store'
+
+rareimagery_xstore.dashboard_catchall:
+  path: '/dashboard/{path}'
+  defaults:
+    _controller: '\Drupal\rareimagery_xstore\Controller\DashboardAppController::view'
+    _title: 'Store Dashboard'
+    path: ''
+  requirements:
+    _permission: 'manage own x store'
+    path: '.+'

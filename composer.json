@@ -1,0 +1,66 @@
+{
+    "name": "rareimagery/rareimagery-net",
+    "description": "RareImagery.net - X Creator Merch Platform built on Drupal 11 + Commerce",
+    "type": "project",
+    "license": "proprietary",
+    "homepage": "https://rareimagery.net",
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://packages.drupal.org/8"
+        }
+    ],
+    "require": {
+        "composer/installers": "^2.0",
+        "drupal/admin_toolbar": "^3.5",
+        "drupal/color_field": "^3.0",
+        "drupal/commerce": "^3.0",
+        "drupal/commerce_file": "^2.0",
+        "drupal/commerce_stripe": "^2.0",
+        "drupal/core-composer-scaffold": "^11.1",
+        "drupal/core-recommended": "^11.1",
+        "drupal/facets": "^3.0",
+        "drupal/field_group": "^3.6",
+        "drupal/gin": "^5.0",
+        "drupal/inline_entity_form": "^3.0",
+        "drupal/metatag": "^2.1",
+        "drupal/pathauto": "^1.13",
+        "drupal/redirect": "^1.10",
+        "drupal/search_api": "^1.35",
+        "drupal/token": "^1.15",
+        "drush/drush": "^13.0"
+    },
+    "require-dev": {
+        "drupal/core-dev": "^11.1"
+    },
+    "conflict": {
+        "drupal/drupal": "*"
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "config": {
+        "allow-plugins": {
+            "composer/installers": true,
+            "drupal/core-composer-scaffold": true,
+            "phpstan/extension-installer": true,
+            "dealerdirect/phpcodesniffer-composer-installer": true,
+            "php-http/discovery": true
+        },
+        "sort-packages": true
+    },
+    "extra": {
+        "drupal-scaffold": {
+            "locations": {
+                "web-root": "web/"
+            }
+        },
+        "installer-paths": {
+            "web/core": ["type:drupal-core"],
+            "web/libraries/{$name}": ["type:drupal-library"],
+            "web/modules/contrib/{$name}": ["type:drupal-module"],
+            "web/profiles/contrib/{$name}": ["type:drupal-profile"],
+            "web/themes/contrib/{$name}": ["type:drupal-theme"],
+            "drush/Commands/contrib/{$name}": ["type:drupal-drush"]
+        }
+    }
+}

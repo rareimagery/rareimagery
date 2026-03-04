@@ -1,0 +1,14 @@
+rareimagery_xstore.settings:
+  type: config_object
+  label: 'RareImagery XStore settings'
+  mapping:
+    printful:
+      type: mapping
+      label: 'Printful settings'
+      mapping:
+        api_key:
+          type: string
+          label: 'Printful API Key'
+        webhook_secret:
+          type: string
+          label: 'Printful Webhook Secret'

@@ -1,0 +1,78 @@
+<?php
+
+/**
+ * @file
+ * Primary module hooks for RareImagery X Store module.
+ */
+
+/**
+ * Implements hook_theme().
+ */
+function rareimagery_xstore_theme($existing, $type, $theme, $path) {
+  return [
+    'store_page' => [
+      'variables' => [
+        'store' => NULL,
+        'products' => [],
+        'handle' => '',
+        'bio' => '',
+        'avatar_url' => '',
+        'banner_url' => '',
+        'followers' => 0,
+        'verified' => FALSE,
+        'brand_color' => '#000000',
+        'tagline' => '',
+        'facets' => [],
+      ],
+      'template' => 'store-page',
+    ],
+    'storefront_app' => [
+      'variables' => [],
+      'template' => 'storefront-app',
+    ],
+    'dashboard_app' => [
+      'variables' => [],
+      'template' => 'dashboard-app',
+    ],
+  ];
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_insert() for node entities.
+ *
+ * When a new x_creator_store node is created, automatically creates
+ * a corresponding commerce_store entity and links them together.
+ */
+function rareimagery_xstore_node_insert(\Drupal\node\NodeInterface $node) {
+  if ($node->bundle() !== 'x_creator_store') {
+    return;
+  }
+
+  // Prevent infinite loop during the re-save.
+  if (!empty($node->_skipStoreCreation)) {
+    return;
+  }
+
+  $handle = $node->get('field_x_handle')->value;
+  $store_storage = \Drupal::entityTypeManager()->getStorage('commerce_store');
+
+  $commerce_store = $store_storage->create([
+    'type' => 'creator',
+    'name' => '@' . $handle . ' Store',
+    'mail' => $node->getOwner()->getEmail(),
+    'default_currency' => 'USD',
+    'timezone' => 'America/New_York',
+    'is_default' => FALSE,
+    'uid' => $node->getOwnerId(),
+    'address' => [
+      'country_code' => 'US',
+    ],
+    'status' => TRUE,
+  ]);
+  $commerce_store->save();
+
+  // Link the node to the commerce store.
+  $node->set('field_commerce_store', $commerce_store->id());
+  $node->_skipStoreCreation = TRUE;
+  $node->save();
+}

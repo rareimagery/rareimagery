@@ -1,0 +1,44 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - commerce_product.commerce_product_type.physical_pod
+  module:
+    - commerce_product
+  enforced:
+    module:
+      - rareimagery_xstore
+id: commerce_product.physical_pod.default
+targetEntityType: commerce_product
+bundle: physical_pod
+mode: default
+content:
+  title:
+    label: hidden
+    type: string
+    weight: -5
+    region: content
+    settings:
+      link_to_entity: false
+    third_party_settings: {}
+  variations:
+    type: commerce_add_to_cart
+    weight: 1
+    label: hidden
+    settings:
+      default_quantity: '1'
+      combine: true
+      show_quantity: false
+    third_party_settings: {}
+    region: content
+hidden:
+  created: true
+  stores: true
+  uid: true
+  field_store: true
+  field_product_category: true
+  field_design_style: true
+  field_audience: true
+  field_animal_type: true
+  field_breed: true
+  field_printful_product_id: true

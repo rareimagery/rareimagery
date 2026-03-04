@@ -1,0 +1,23 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "drupal",
+      "runtimeExecutable": "docker",
+      "runtimeArgs": ["compose", "up"],
+      "port": 8088
+    },
+    {
+      "name": "storefront",
+      "runtimeExecutable": "pnpm",
+      "runtimeArgs": ["--filter", "@rareimagery/storefront", "dev"],
+      "port": 5173
+    },
+    {
+      "name": "dashboard",
+      "runtimeExecutable": "pnpm",
+      "runtimeArgs": ["--filter", "@rareimagery/dashboard", "dev"],
+      "port": 5174
+    }
+  ]
+}

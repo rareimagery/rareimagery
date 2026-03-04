@@ -1,0 +1,32 @@
+# Drupal
+vendor/
+web/core/
+web/modules/contrib/
+web/themes/contrib/
+web/profiles/contrib/
+web/sites/default/files/
+web/sites/default/settings.local.php
+
+# Private files
+private/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Environment
+.env
+
+# Docker data (volumes are external)
+postgres_data/
+
+# Frontend
+frontend/node_modules/
+frontend/.pnpm-store/
+web/themes/custom/rareimagery/dist/

@@ -1,0 +1,17 @@
+{
+  "name": "@rareimagery/root",
+  "private": true,
+  "scripts": {
+    "dev:storefront": "pnpm --filter @rareimagery/storefront dev",
+    "dev:dashboard": "pnpm --filter @rareimagery/dashboard dev",
+    "build": "pnpm -r build",
+    "build:storefront": "pnpm --filter @rareimagery/storefront build",
+    "build:dashboard": "pnpm --filter @rareimagery/dashboard build",
+    "lint": "pnpm -r lint",
+    "typecheck": "pnpm -r typecheck"
+  },
+  "engines": {
+    "node": ">=22",
+    "pnpm": ">=9"
+  }
+}

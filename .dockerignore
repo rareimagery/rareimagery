@@ -1,0 +1,9 @@
+.git
+.gitignore
+.dockerignore
+docker-compose.yml
+Dockerfile
+*.md
+.claude/
+vendor/
+web/sites/default/files/

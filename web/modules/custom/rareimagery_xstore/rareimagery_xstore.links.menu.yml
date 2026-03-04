@@ -1,0 +1,6 @@
+rareimagery_xstore.printful_settings:
+  title: 'Printful Settings'
+  parent: system.admin_config
+  description: 'Configure Printful API integration for RareImagery.'
+  route_name: rareimagery_xstore.printful_settings
+  weight: 10
