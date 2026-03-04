@@ -41,6 +41,7 @@ $settings['trusted_host_patterns'] = [
   '^127\.0\.0\.1$',
   '^rareimagery\.net$',
   '^www\.rareimagery\.net$',
+  '^srv1450030\.hstgr\.cloud$',
 ];
 
 $settings['file_private_path'] = $app_root . '/../private';
