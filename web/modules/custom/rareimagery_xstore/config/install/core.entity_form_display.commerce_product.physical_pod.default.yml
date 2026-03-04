@@ -21,25 +21,25 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {}
-  field_store:
-    type: entity_reference_autocomplete
+  field_images:
+    type: image_image
     weight: 1
     region: content
     settings:
-      match_operator: CONTAINS
-      match_limit: 10
-      size: 60
-      placeholder: ''
+      progress_indicator: throbber
+      preview_image_style: thumbnail
     third_party_settings: {}
-  stores:
-    type: commerce_entity_select
+  field_description:
+    type: text_textarea_with_summary
     weight: 2
     region: content
     settings:
-      hide_single_entity: true
-      autocomplete_threshold: 7
+      rows: 9
+      summary_rows: 3
+      placeholder: ''
+      show_summary: false
     third_party_settings: {}
-  field_product_category:
+  field_store:
     type: entity_reference_autocomplete
     weight: 3
     region: content
@@ -49,17 +49,15 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {}
-  field_design_style:
-    type: entity_reference_autocomplete
+  stores:
+    type: commerce_entity_select
     weight: 4
     region: content
     settings:
-      match_operator: CONTAINS
-      match_limit: 10
-      size: 60
-      placeholder: ''
+      hide_single_entity: true
+      autocomplete_threshold: 7
     third_party_settings: {}
-  field_audience:
+  field_product_category:
     type: entity_reference_autocomplete
     weight: 5
     region: content
@@ -69,7 +67,7 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {}
-  field_animal_type:
+  field_design_style:
     type: entity_reference_autocomplete
     weight: 6
     region: content
@@ -79,7 +77,7 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {}
-  field_breed:
+  field_audience:
     type: entity_reference_autocomplete
     weight: 7
     region: content
@@ -89,9 +87,29 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {}
+  field_animal_type:
+    type: entity_reference_autocomplete
+    weight: 8
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {}
+  field_breed:
+    type: entity_reference_autocomplete
+    weight: 9
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {}
   field_printful_product_id:
     type: string_textfield
-    weight: 8
+    weight: 10
     region: content
     settings:
       size: 60
@@ -99,7 +117,7 @@ content:
     third_party_settings: {}
   variations:
     type: inline_entity_form_complex
-    weight: 10
+    weight: 12
     region: content
     settings:
       form_mode: default

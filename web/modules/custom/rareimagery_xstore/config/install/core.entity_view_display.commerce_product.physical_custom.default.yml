@@ -13,6 +13,17 @@ targetEntityType: commerce_product
 bundle: physical_custom
 mode: default
 content:
+  field_images:
+    label: hidden
+    type: image
+    weight: -10
+    region: content
+    settings:
+      image_style: large
+      image_link: ''
+      image_loading:
+        attribute: lazy
+    third_party_settings: {}
   title:
     label: hidden
     type: string
@@ -20,6 +31,13 @@ content:
     region: content
     settings:
       link_to_entity: false
+    third_party_settings: {}
+  field_description:
+    label: hidden
+    type: text_default
+    weight: 0
+    region: content
+    settings: {}
     third_party_settings: {}
   variations:
     type: commerce_add_to_cart

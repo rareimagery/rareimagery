@@ -1,0 +1,43 @@
+name: Deploy to Production
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy via SSH
+        uses: appleboy/ssh-action@v1
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script_stop: true
+          script: |
+            set -e
+            APP_DIR="/opt/rareimagery"
+
+            # Clone if first deploy
+            if [ ! -d "$APP_DIR" ]; then
+              git clone git@github.com:rareimagery/rareimagery.git "$APP_DIR"
+            fi
+
+            cd "$APP_DIR"
+            git fetch origin main
+            git reset --hard origin/main
+
+            # Build and restart containers
+            docker compose build
+            docker compose up -d
+
+            # Wait for Drupal container to be ready
+            sleep 10
+
+            # Post-deploy: clear cache and run DB updates
+            docker compose exec -T drupal vendor/bin/drush cr
+            docker compose exec -T drupal vendor/bin/drush updb -y
+
+            echo "Deploy complete at $(date)"

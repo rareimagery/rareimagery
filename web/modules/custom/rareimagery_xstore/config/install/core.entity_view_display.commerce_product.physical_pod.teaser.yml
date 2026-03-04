@@ -14,6 +14,17 @@ targetEntityType: commerce_product
 bundle: physical_pod
 mode: teaser
 content:
+  field_images:
+    label: hidden
+    type: image
+    weight: -10
+    region: content
+    settings:
+      image_style: medium
+      image_link: content
+      image_loading:
+        attribute: lazy
+    third_party_settings: {}
   title:
     label: hidden
     type: string
