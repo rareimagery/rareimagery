@@ -22,6 +22,7 @@ Thumbs.db
 
 # Environment
 .env
+.mcp.json
 
 # Docker data (volumes are external)
 postgres_data/
