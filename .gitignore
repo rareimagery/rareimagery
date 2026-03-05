@@ -28,6 +28,14 @@ Thumbs.db
 postgres_data/
 
 # Frontend
-frontend/node_modules/
+**/node_modules/
 frontend/.pnpm-store/
+frontend/apps/*/dist/
+frontend/packages/*/dist/
 web/themes/custom/rareimagery/dist/
+
+# Photos (large binaries)
+rareimagery_photos/
+
+# Claude skills cache
+.claude/skills/*/scripts/__pycache__/

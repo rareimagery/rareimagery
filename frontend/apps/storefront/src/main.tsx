@@ -4,6 +4,9 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { BrowserRouter } from 'react-router-dom';
 import { App } from './App';
 import './styles/global.css';
+import './styles/creator-page.css';
+import './styles/music-player.css';
+import './styles/autoplay-gate.css';
 
 const queryClient = new QueryClient({
   defaultOptions: {

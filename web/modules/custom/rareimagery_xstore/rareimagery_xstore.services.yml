@@ -35,6 +35,10 @@ services:
     tags:
       - { name: event_subscriber }
 
+  rareimagery_xstore.creator_theme:
+    class: Drupal\rareimagery_xstore\Service\CreatorThemeService
+    arguments: ['@entity_type.manager', '@file_url_generator']
+
   rareimagery_xstore.printful_order_subscriber:
     class: Drupal\rareimagery_xstore\EventSubscriber\PrintfulOrderSubscriber
     arguments: ['@rareimagery_xstore.printful_sync']

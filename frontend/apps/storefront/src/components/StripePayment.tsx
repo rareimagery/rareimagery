@@ -2,18 +2,7 @@ import { useState } from 'react';
 import { loadStripe } from '@stripe/stripe-js';
 import { Elements, PaymentElement, useStripe, useElements } from '@stripe/react-stripe-js';
 
-declare global {
-  interface Window {
-    drupalSettings?: {
-      rareimagery_storefront?: {
-        stripe_publishable_key?: string;
-      };
-    };
-  }
-}
-
-const stripeKey =
-  window.drupalSettings?.rareimagery_storefront?.stripe_publishable_key ?? '';
+const stripeKey = import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY ?? '';
 const stripePromise = stripeKey ? loadStripe(stripeKey) : null;
 
 interface StripePaymentProps {

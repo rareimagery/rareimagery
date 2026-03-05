@@ -35,13 +35,23 @@ $settings['entity_update_backup'] = TRUE;
 
 $settings['config_sync_directory'] = '../config/sync';
 
-// Trusted host patterns for local development.
+// Trusted host patterns.
 $settings['trusted_host_patterns'] = [
   '^localhost$',
   '^127\.0\.0\.1$',
   '^rareimagery\.net$',
   '^www\.rareimagery\.net$',
+  '^api\.rareimagery\.net$',
   '^srv1450030\.hstgr\.cloud$',
 ];
 
 $settings['file_private_path'] = $app_root . '/../private';
+
+// Cross-origin cookie settings for decoupled Vercel frontend.
+// SameSite=None + Secure allows cookies across rareimagery.net (Vercel)
+// and api.rareimagery.net (Drupal API).
+if (php_sapi_name() !== 'cli') {
+  ini_set('session.cookie_samesite', 'None');
+  ini_set('session.cookie_secure', '1');
+  ini_set('session.cookie_domain', '.rareimagery.net');
+}

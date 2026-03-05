@@ -7,18 +7,6 @@ export default defineConfig({
   build: {
     outDir: 'dist',
     emptyOutDir: true,
-    rollupOptions: {
-      output: {
-        entryFileNames: 'assets/main.js',
-        chunkFileNames: 'assets/[name].js',
-        assetFileNames: (assetInfo) => {
-          if (assetInfo.names?.[0]?.endsWith('.css') || assetInfo.name?.endsWith('.css')) {
-            return 'assets/main.css';
-          }
-          return 'assets/[name].[ext]';
-        },
-      },
-    },
   },
   server: {
     port: 5173,

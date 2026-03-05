@@ -14,6 +14,8 @@ parameters:
     allowedOrigins:
       - http://localhost:5173
       - http://localhost:5174
+      - https://rareimagery.net
+      - https://www.rareimagery.net
     exposedHeaders: false
     maxAge: 3600
     supportsCredentials: true

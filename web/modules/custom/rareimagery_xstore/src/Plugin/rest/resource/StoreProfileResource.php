@@ -5,6 +5,7 @@ namespace Drupal\rareimagery_xstore\Plugin\rest\resource;
 use Drupal\rest\Plugin\ResourceBase;
 use Drupal\rest\ResourceResponse;
 use Drupal\rareimagery_xstore\Service\StoreManagerService;
+use Drupal\rareimagery_xstore\Service\CreatorThemeService;
 use Drupal\Core\File\FileUrlGeneratorInterface;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -25,6 +26,7 @@ class StoreProfileResource extends ResourceBase {
 
   protected StoreManagerService $storeManager;
   protected FileUrlGeneratorInterface $fileUrlGenerator;
+  protected CreatorThemeService $creatorTheme;
 
   public function __construct(
     array $configuration,
@@ -34,10 +36,12 @@ class StoreProfileResource extends ResourceBase {
     LoggerInterface $logger,
     StoreManagerService $store_manager,
     FileUrlGeneratorInterface $file_url_generator,
+    CreatorThemeService $creator_theme,
   ) {
     parent::__construct($configuration, $plugin_id, $plugin_definition, $serializer_formats, $logger);
     $this->storeManager = $store_manager;
     $this->fileUrlGenerator = $file_url_generator;
+    $this->creatorTheme = $creator_theme;
   }
 
   public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition): static {
@@ -49,6 +53,7 @@ class StoreProfileResource extends ResourceBase {
       $container->get('logger.factory')->get('rest'),
       $container->get('rareimagery_xstore.store_manager'),
       $container->get('file_url_generator'),
+      $container->get('rareimagery_xstore.creator_theme'),
     );
   }
 
@@ -102,6 +107,8 @@ class StoreProfileResource extends ResourceBase {
       'commerceStoreUuid' => $commerce_store ? $commerce_store->uuid() : NULL,
       'stripeAccountId' => $store_node->hasField('field_stripe_account_id') ? $store_node->get('field_stripe_account_id')->value : NULL,
       'printfulStoreId' => $store_node->hasField('field_x_printful_store_id') ? $store_node->get('field_x_printful_store_id')->value : NULL,
+      'theme' => $this->creatorTheme->loadByCreatorStore($store_node),
+      'stripe_publishable_key' => getenv('STRIPE_PUBLISHABLE_KEY') ?: '',
     ];
 
     $response = new ResourceResponse($data);

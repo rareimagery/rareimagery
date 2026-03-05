@@ -2,9 +2,17 @@ export class DrupalClient {
   private csrfToken: string | null = null;
   private csrfPromise: Promise<string> | null = null;
   private baseUrl: string;
+  private credentialsMode: RequestCredentials;
 
-  constructor(baseUrl = '') {
-    this.baseUrl = baseUrl;
+  constructor(baseUrl?: string) {
+    this.baseUrl =
+      baseUrl ??
+      (typeof import.meta !== 'undefined'
+        ? (import.meta.env?.VITE_API_BASE_URL ?? '')
+        : '');
+    // Use 'include' for cross-origin requests (Vercel → api.rareimagery.net),
+    // 'same-origin' when baseUrl is empty (local dev with Vite proxy).
+    this.credentialsMode = this.baseUrl ? 'include' : 'same-origin';
   }
 
   async getCsrfToken(): Promise<string> {
@@ -12,7 +20,7 @@ export class DrupalClient {
     if (this.csrfPromise) return this.csrfPromise;
 
     this.csrfPromise = fetch(`${this.baseUrl}/session/token`, {
-      credentials: 'same-origin',
+      credentials: this.credentialsMode,
     })
       .then((res) => {
         if (!res.ok) throw new Error('Failed to fetch CSRF token');
@@ -28,7 +36,10 @@ export class DrupalClient {
   }
 
   async get<T>(path: string, params?: Record<string, string>): Promise<T> {
-    const url = new URL(`${this.baseUrl}${path}`, window.location.origin);
+    const fullPath = `${this.baseUrl}${path}`;
+    const url = this.baseUrl.startsWith('http')
+      ? new URL(fullPath)
+      : new URL(fullPath, window.location.origin);
     if (params) {
       Object.entries(params).forEach(([key, value]) =>
         url.searchParams.set(key, value),
@@ -36,7 +47,7 @@ export class DrupalClient {
     }
 
     const res = await fetch(url.toString(), {
-      credentials: 'same-origin',
+      credentials: this.credentialsMode,
       headers: { Accept: 'application/vnd.api+json, application/json' },
     });
 
@@ -52,7 +63,7 @@ export class DrupalClient {
 
     const res = await fetch(`${this.baseUrl}${path}`, {
       method: 'POST',
-      credentials: 'same-origin',
+      credentials: this.credentialsMode,
       headers: {
         'Content-Type': 'application/vnd.api+json',
         'X-CSRF-Token': token,
@@ -73,7 +84,7 @@ export class DrupalClient {
 
     const res = await fetch(`${this.baseUrl}${path}`, {
       method: 'PATCH',
-      credentials: 'same-origin',
+      credentials: this.credentialsMode,
       headers: {
         'Content-Type': 'application/vnd.api+json',
         'X-CSRF-Token': token,
@@ -94,7 +105,7 @@ export class DrupalClient {
 
     const res = await fetch(`${this.baseUrl}${path}`, {
       method: 'DELETE',
-      credentials: 'same-origin',
+      credentials: this.credentialsMode,
       headers: {
         'X-CSRF-Token': token,
         Accept: 'application/vnd.api+json',

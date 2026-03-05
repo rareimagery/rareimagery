@@ -108,7 +108,20 @@ class StorePageController extends ControllerBase {
       'commerceStoreId' => $commerce_store ? (int) $commerce_store->id() : NULL,
       'commerceStoreUuid' => $commerce_store ? $commerce_store->uuid() : NULL,
       'stripe_publishable_key' => getenv('STRIPE_PUBLISHABLE_KEY') ?: '',
+      'theme' => $this->loadCreatorTheme($store_node),
     ];
+  }
+
+  /**
+   * Loads the creator profile theme for a store node.
+   *
+   * @return array|null
+   *   Theme data array, or NULL if no published theme exists.
+   */
+  protected function loadCreatorTheme($store_node): ?array {
+    /** @var \Drupal\rareimagery_xstore\Service\CreatorThemeService $theme_service */
+    $theme_service = \Drupal::service('rareimagery_xstore.creator_theme');
+    return $theme_service->loadByCreatorStore($store_node);
   }
 
   /**
