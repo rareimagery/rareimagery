@@ -3,7 +3,6 @@
   "buildCommand": "cd frontend && pnpm --filter @rareimagery/storefront build",
   "outputDirectory": "frontend/apps/storefront/dist",
   "framework": null,
-  "nodeVersion": "22",
   "rewrites": [
     { "source": "/(.*)", "destination": "/index.html" }
   ],
