@@ -1,8 +1,9 @@
 {
-  "installCommand": "npm i -g pnpm@9 && cd frontend && pnpm install --frozen-lockfile",
+  "installCommand": "corepack enable && corepack prepare pnpm@9 --activate && cd frontend && pnpm install --frozen-lockfile",
   "buildCommand": "cd frontend && pnpm --filter @rareimagery/storefront build",
   "outputDirectory": "frontend/apps/storefront/dist",
   "framework": null,
+  "nodeVersion": "22",
   "rewrites": [
     { "source": "/(.*)", "destination": "/index.html" }
   ],
