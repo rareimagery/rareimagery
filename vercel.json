@@ -1,6 +1,6 @@
 {
-  "installCommand": "corepack enable && corepack prepare pnpm@9 --activate && cd frontend && pnpm install --frozen-lockfile",
-  "buildCommand": "cd frontend && pnpm --filter @rareimagery/storefront build",
+  "installCommand": "cd frontend && npx -y pnpm@9 install --frozen-lockfile",
+  "buildCommand": "cd frontend && npx -y pnpm@9 --filter @rareimagery/storefront build",
   "outputDirectory": "frontend/apps/storefront/dist",
   "framework": null,
   "rewrites": [
