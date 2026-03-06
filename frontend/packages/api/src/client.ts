@@ -7,11 +7,11 @@ export class DrupalClient {
   constructor(baseUrl?: string) {
     this.baseUrl =
       baseUrl ??
-      (typeof import.meta !== 'undefined'
-        ? (import.meta.env?.VITE_API_BASE_URL ?? '')
+      (typeof window !== 'undefined'
+        ? (process.env.NEXT_PUBLIC_API_BASE_URL ?? '')
         : '');
     // Use 'include' for cross-origin requests (Vercel → api.rareimagery.net),
-    // 'same-origin' when baseUrl is empty (local dev with Vite proxy).
+    // 'same-origin' when baseUrl is empty (local dev with Next.js rewrites).
     this.credentialsMode = this.baseUrl ? 'include' : 'same-origin';
   }
 

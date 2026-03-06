@@ -40,4 +40,22 @@ jobs:
             docker compose exec -T drupal vendor/bin/drush cr
             docker compose exec -T drupal vendor/bin/drush updb -y
 
+            # Import any new REST resource configs from config/install
+            docker compose exec -T drupal vendor/bin/drush php:eval '
+              $dir = DRUPAL_ROOT . "/modules/custom/rareimagery_xstore/config/install/";
+              foreach (glob($dir . "rest.resource.*.yml") as $file) {
+                $name = basename($file, ".yml");
+                if (!\Drupal::configFactory()->get($name)->get("id")) {
+                  $data = \Drupal\Component\Serialization\Yaml::decode(file_get_contents($file));
+                  \Drupal::configFactory()->getEditable($name)->setData($data)->save();
+                  echo "Imported $name\n";
+                }
+              }
+            '
+
+            # Grant API permissions
+            docker compose exec -T drupal vendor/bin/drush role:perm:add anonymous 'restful get store_list,restful get store_profile,restful get x_profile_preview'
+            docker compose exec -T drupal vendor/bin/drush role:perm:add authenticated 'restful get store_list,restful get store_profile,restful get x_profile_preview,restful post store_create'
+            docker compose exec -T drupal vendor/bin/drush cr
+
             echo "Deploy complete at $(date)"

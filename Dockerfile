@@ -6,7 +6,7 @@ COPY frontend/package.json frontend/pnpm-workspace.yaml frontend/tsconfig.base.j
 COPY frontend/apps ./apps
 COPY frontend/packages ./packages
 RUN pnpm install
-RUN pnpm build
+RUN pnpm --filter @rareimagery/dashboard build
 
 # Stage 2: PHP application
 FROM php:8.3-fpm-bookworm
@@ -69,8 +69,7 @@ RUN composer install --no-dev --optimize-autoloader --no-interaction
 # Copy any remaining files
 COPY . .
 
-# Copy built frontend assets into theme
-COPY --from=frontend-build /app/frontend/apps/storefront/dist web/themes/custom/rareimagery/dist/storefront
+# Copy built frontend assets into theme (storefront deploys to Vercel separately)
 COPY --from=frontend-build /app/frontend/apps/dashboard/dist web/themes/custom/rareimagery/dist/dashboard
 
 # Fix permissions and create private files directory
