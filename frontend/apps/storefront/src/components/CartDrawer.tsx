@@ -53,14 +53,14 @@ export function CartDrawer({ handle, isOpen, onClose }: CartDrawerProps) {
         {totalItems > 0 && (
           <div className="xstore__cart-drawer-footer">
             <Link
-              to={`/store/${handle}/cart`}
+              to={`/${handle}/cart`}
               className="xstore__cart-drawer-link"
               onClick={onClose}
             >
               View Cart
             </Link>
             <Link
-              to={`/store/${handle}/checkout`}
+              to={`/${handle}/checkout`}
               className="xstore__checkout-button"
               onClick={onClose}
             >

@@ -19,7 +19,7 @@ export function ProductDetailPage() {
   return (
     <div className="xstore">
       <nav className="xstore__breadcrumb">
-        <Link to={`/store/${handle}`}>@{handle}</Link> / {product.title}
+        <Link to={`/${handle}`}>@{handle}</Link> / {product.title}
       </nav>
 
       <div className="xstore__product-detail">
@@ -77,7 +77,7 @@ export function ProductDetailPage() {
           {addToCart.isSuccess && (
             <p className="xstore__cart-success">
               Added to cart!{' '}
-              <Link to={`/store/${handle}/cart`}>View Cart</Link>
+              <Link to={`/${handle}/cart`}>View Cart</Link>
             </p>
           )}
         </div>

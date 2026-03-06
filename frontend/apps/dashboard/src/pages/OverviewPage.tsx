@@ -50,7 +50,7 @@ export function OverviewPage() {
         <h2>Quick Actions</h2>
         <PrintfulSyncButton storeNodeId={store.nodeId} />
         <a
-          href={`/store/${store.handle}`}
+          href={`/${store.handle}`}
           target="_blank"
           rel="noopener noreferrer"
           className="dashboard__action-link"

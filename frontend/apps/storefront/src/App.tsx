@@ -7,10 +7,10 @@ import { CheckoutPage } from './pages/CheckoutPage';
 export function App() {
   return (
     <Routes>
-      <Route path="/store/:handle" element={<StorePage />} />
-      <Route path="/store/:handle/product/:productUuid" element={<ProductDetailPage />} />
-      <Route path="/store/:handle/cart" element={<CartPage />} />
-      <Route path="/store/:handle/checkout" element={<CheckoutPage />} />
+      <Route path="/:handle" element={<StorePage />} />
+      <Route path="/:handle/product/:productUuid" element={<ProductDetailPage />} />
+      <Route path="/:handle/cart" element={<CartPage />} />
+      <Route path="/:handle/checkout" element={<CheckoutPage />} />
     </Routes>
   );
 }

@@ -50,7 +50,7 @@ export function ProductGrid() {
           key={product.uuid}
           product={product}
           onClick={() =>
-            navigate(`/store/${handle}/product/${product.uuid}`)
+            navigate(`/${handle}/product/${product.uuid}`)
           }
         />
       ))}

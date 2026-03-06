@@ -20,7 +20,7 @@ export function CartPage() {
           description="Browse the store and add some items!"
           action={{
             label: 'Continue Shopping',
-            onClick: () => window.location.assign(`/store/${handle}`),
+            onClick: () => window.location.assign(`/${handle}`),
           }}
         />
       </div>
@@ -110,7 +110,7 @@ export function CartPage() {
         </div>
       ))}
 
-      <Link to={`/store/${handle}/checkout`} className="xstore__checkout-button">
+      <Link to={`/${handle}/checkout`} className="xstore__checkout-button">
         Proceed to Checkout
       </Link>
     </div>

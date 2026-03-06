@@ -31,7 +31,7 @@ export function TopProducts() {
           <ProductCard
             key={product.uuid}
             product={product}
-            onClick={() => navigate(`/store/${store?.handle}/product/${product.uuid}`)}
+            onClick={() => navigate(`/${store?.handle}/product/${product.uuid}`)}
           />
         ))}
       </div>

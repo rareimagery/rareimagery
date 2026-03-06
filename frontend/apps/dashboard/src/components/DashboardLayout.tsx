@@ -63,7 +63,7 @@ export function DashboardLayout() {
 
         <div className="dashboard__nav-footer">
           <a
-            href={`/store/${store.handle}`}
+            href={`/${store.handle}`}
             target="_blank"
             rel="noopener noreferrer"
           >
