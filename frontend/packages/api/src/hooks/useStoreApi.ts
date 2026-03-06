@@ -24,7 +24,8 @@ export interface StoreSummary {
 export function useStores() {
   return useQuery({
     queryKey: ['stores'],
-    queryFn: () => drupalClient.get<StoreSummary[]>('/api/stores'),
+    queryFn: () =>
+      drupalClient.get<StoreSummary[]>('/api/stores', { _format: 'json' }),
     staleTime: 10 * 60 * 1000,
   });
 }
