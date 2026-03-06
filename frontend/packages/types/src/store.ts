@@ -16,3 +16,25 @@ export interface CreatorStore {
   stripeAccountId?: string;
   printfulStoreId?: string;
 }
+
+export interface XProfilePreview {
+  handle: string;
+  displayName: string;
+  bio: string;
+  avatarUrl: string;
+  bannerUrl: string;
+  followers: number;
+  verified: boolean;
+  handleTaken: boolean;
+  error: string | null;
+}
+
+export interface StoreCreateRequest {
+  handle: string;
+  bio?: string;
+  tagline?: string;
+  brandColor?: string;
+  about?: string;
+}
+
+export type StoreCreateResponse = CreatorStore;

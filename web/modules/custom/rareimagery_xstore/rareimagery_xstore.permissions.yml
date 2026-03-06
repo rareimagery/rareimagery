@@ -27,3 +27,9 @@ manage own x store:
 
 'restful post stripe_connect_onboarding':
   title: 'Start Stripe Connect onboarding API'
+
+'restful get x_profile_preview':
+  title: 'Preview X profile data'
+
+'restful post store_create':
+  title: 'Create store via API'

@@ -39,6 +39,15 @@ services:
     class: Drupal\rareimagery_xstore\Service\CreatorThemeService
     arguments: ['@entity_type.manager', '@file_url_generator']
 
+  rareimagery_xstore.x_profile_scraper:
+    class: Drupal\rareimagery_xstore\Service\XProfileScraperService
+    arguments:
+      - '@http_client'
+      - '@logger.factory'
+      - '@cache.default'
+      - '@file_system'
+      - '@entity_type.manager'
+
   rareimagery_xstore.printful_order_subscriber:
     class: Drupal\rareimagery_xstore\EventSubscriber\PrintfulOrderSubscriber
     arguments: ['@rareimagery_xstore.printful_sync']

@@ -9,8 +9,8 @@
     },
     {
       "name": "storefront",
-      "runtimeExecutable": "pnpm",
-      "runtimeArgs": ["--filter", "@rareimagery/storefront", "dev"],
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["pnpm", "--filter", "@rareimagery/storefront", "dev"],
       "port": 5173
     },
     {

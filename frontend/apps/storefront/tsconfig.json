@@ -1,11 +1,49 @@
 {
-  "extends": "../../tsconfig.base.json",
-  "include": ["src"],
   "compilerOptions": {
+    "target": "ES2022",
+    "lib": [
+      "ES2022",
+      "DOM",
+      "DOM.Iterable"
+    ],
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "jsx": "preserve",
+    "incremental": true,
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
     "paths": {
-      "@rareimagery/types": ["../../packages/types/src"],
-      "@rareimagery/api": ["../../packages/api/src"],
-      "@rareimagery/ui": ["../../packages/ui/src"]
-    }
-  }
+      "@/*": [
+        "./src/*"
+      ],
+      "@rareimagery/types": [
+        "../../packages/types/src"
+      ],
+      "@rareimagery/api": [
+        "../../packages/api/src"
+      ],
+      "@rareimagery/ui": [
+        "../../packages/ui/src"
+      ]
+    },
+    "allowJs": true
+  },
+  "include": [
+    "next-env.d.ts",
+    "src",
+    ".next/types/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
 }

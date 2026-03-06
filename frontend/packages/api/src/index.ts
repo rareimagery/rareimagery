@@ -6,3 +6,9 @@ export { useProducts, useProduct } from './hooks/useProductApi';
 export { useCarts, useAddToCart, useUpdateCartItem, useRemoveCartItem } from './hooks/useCartApi';
 export { useOrders, useOrder } from './hooks/useOrderApi';
 export { useTaxonomyTerms } from './hooks/useTaxonomyApi';
+
+export { useXProfilePreview, useCreateStore } from './hooks/useStoreCreateApi';
+
+// Server-side exports (for Next.js server components)
+export { DrupalServerClient } from './server-client';
+export { fetchStores, fetchStoreProfile } from './fetchers';

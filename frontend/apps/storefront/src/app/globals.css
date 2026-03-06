@@ -1,0 +1,123 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* BEM compatibility layer: maps shared UI component classes to Tailwind */
+@layer components {
+  /* StoreCard */
+  .xstore__store-card {
+    @apply relative bg-white rounded-xl overflow-hidden shadow-sm cursor-pointer
+           transition-all duration-200 hover:-translate-y-1 hover:shadow-lg;
+  }
+
+  .xstore__store-card-banner {
+    @apply h-[100px] bg-cover bg-center;
+  }
+
+  .xstore__store-card-body {
+    @apply flex gap-4 p-4 px-5 items-start;
+  }
+
+  .xstore__store-card-avatar {
+    @apply -mt-10 flex-shrink-0;
+  }
+
+  .xstore__store-card-avatar .xstore__avatar {
+    @apply border-[3px] border-white rounded-full;
+  }
+
+  .xstore__store-card-info {
+    @apply flex-1 min-w-0;
+  }
+
+  .xstore__store-card-handle {
+    @apply text-lg font-semibold text-gray-900 flex items-center gap-1;
+  }
+
+  .xstore__store-card-tagline {
+    @apply text-sm text-gray-500 mt-1 overflow-hidden text-ellipsis whitespace-nowrap;
+  }
+
+  .xstore__store-card-followers {
+    @apply text-xs text-gray-400 mt-1 inline-block;
+  }
+
+  .xstore__store-card-accent {
+    @apply h-[3px];
+  }
+
+  /* Avatar */
+  .xstore__avatar {
+    @apply rounded-full object-cover;
+  }
+
+  .xstore__avatar--placeholder {
+    @apply flex items-center justify-center bg-gray-200 text-gray-600 font-bold text-xl rounded-full;
+  }
+
+  /* VerifiedBadge */
+  .xstore__verified-badge {
+    @apply inline-block;
+  }
+
+  /* ProductCard */
+  .xstore__product-card {
+    @apply bg-white rounded-xl overflow-hidden shadow-sm cursor-pointer
+           transition-all duration-200 hover:-translate-y-1 hover:shadow-lg;
+  }
+
+  .xstore__product-card-image {
+    @apply w-full h-48 object-cover;
+  }
+
+  .xstore__product-card-body {
+    @apply p-4;
+  }
+
+  .xstore__product-type-badge {
+    @apply text-xs font-medium text-gray-500 uppercase tracking-wide;
+  }
+
+  .xstore__product-card-title {
+    @apply text-base font-semibold text-gray-900 mt-1;
+  }
+
+  .xstore__product-card-price {
+    @apply text-sm text-gray-700 mt-2;
+  }
+
+  /* PriceDisplay */
+  .price-display {
+    @apply font-semibold;
+  }
+
+  /* LoadingSpinner */
+  .loading-spinner {
+    @apply flex flex-col items-center justify-center py-12 text-gray-400;
+  }
+
+  .loading-spinner__icon {
+    @apply animate-spin;
+  }
+
+  .loading-spinner__message {
+    @apply mt-3 text-sm;
+  }
+
+  /* EmptyState */
+  .empty-state {
+    @apply text-center py-16 px-8;
+  }
+
+  .empty-state__title {
+    @apply text-xl font-semibold mb-2;
+  }
+
+  .empty-state__description {
+    @apply text-gray-400 mb-6;
+  }
+
+  .empty-state__action {
+    @apply px-6 py-3 text-white border-none rounded cursor-pointer font-semibold;
+  }
+}

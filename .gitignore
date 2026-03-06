@@ -31,11 +31,15 @@ postgres_data/
 **/node_modules/
 frontend/.pnpm-store/
 frontend/apps/*/dist/
+frontend/apps/*/.next/
 frontend/packages/*/dist/
 web/themes/custom/rareimagery/dist/
+.env.local
+**/.env.local
 
 # Photos (large binaries)
 rareimagery_photos/
 
-# Claude skills cache
-.claude/skills/*/scripts/__pycache__/
+# Claude skills & settings
+.claude/skills/
+.claude/settings.local.json
