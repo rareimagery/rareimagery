@@ -24,6 +24,7 @@ $settings['hash_salt'] = getenv('DRUPAL_HASH_SALT') ?: 'rareimagery-change-this-
 $settings['update_free_access'] = FALSE;
 
 $settings['container_yamls'][] = $app_root . '/' . $site_path . '/services.yml';
+$settings['container_yamls'][] = $app_root . '/' . $site_path . '/services.local.yml';
 
 $settings['file_scan_ignore_directories'] = [
   'node_modules',
