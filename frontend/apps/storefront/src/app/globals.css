@@ -120,4 +120,29 @@
   .empty-state__action {
     @apply px-6 py-3 text-white border-none rounded cursor-pointer font-semibold;
   }
+
+  /* Product variation buttons */
+  .product-variation-btn {
+    @apply px-3 py-1.5 rounded-lg border text-sm font-medium transition-colors;
+  }
+
+  .product-variation-btn--active {
+    @apply border-gray-900 bg-gray-900 text-white;
+  }
+
+  .product-variation-btn--inactive {
+    @apply border-gray-300 text-gray-700 hover:border-gray-500;
+  }
+
+  /* Cart quantity button */
+  .cart-qty-btn {
+    @apply w-8 h-8 rounded-full border border-gray-300 flex items-center justify-center
+           text-gray-600 hover:bg-gray-100 transition-colors;
+  }
+
+  /* Checkout inputs */
+  .checkout-input {
+    @apply px-4 py-3 border border-gray-300 rounded-xl text-sm
+           focus:outline-none focus:ring-2 focus:ring-gray-900 focus:border-transparent;
+  }
 }

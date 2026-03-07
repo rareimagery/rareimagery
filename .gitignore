@@ -29,9 +29,11 @@ postgres_data/
 
 # Frontend
 **/node_modules/
+.pnpm-store/
 frontend/.pnpm-store/
 frontend/apps/*/dist/
 frontend/apps/*/.next/
+frontend/apps/*/tsconfig.tsbuildinfo
 frontend/packages/*/dist/
 web/themes/custom/rareimagery/dist/
 .env.local

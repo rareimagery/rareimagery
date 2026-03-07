@@ -29,6 +29,7 @@ services:
     container_name: rareimagery_nginx
     restart: unless-stopped
     ports:
+      - "80:80"
       - "8088:80"
     volumes:
       - .:/var/www/html

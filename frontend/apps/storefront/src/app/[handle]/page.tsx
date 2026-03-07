@@ -1,11 +1,15 @@
 import { notFound } from 'next/navigation';
 import { fetchStoreProfile } from '@rareimagery/api';
 import { drupalServer } from '@/lib/drupal';
+import { StoreHeader } from '@/components/store/StoreHeader';
+import { StoreProducts } from '@/components/store/StoreProducts';
 import type { Metadata } from 'next';
 
 interface StorePageProps {
   params: Promise<{ handle: string }>;
 }
+
+export const revalidate = 300;
 
 export async function generateMetadata({
   params,
@@ -16,6 +20,11 @@ export async function generateMetadata({
     return {
       title: `@${profile.handle}`,
       description: profile.bio || profile.tagline || `Shop @${profile.handle}`,
+      openGraph: {
+        title: `@${profile.handle} | RareImagery`,
+        description: profile.bio || profile.tagline || '',
+        images: profile.avatarUrl ? [{ url: profile.avatarUrl }] : [],
+      },
     };
   } catch {
     return { title: 'Store Not Found' };
@@ -33,17 +42,9 @@ export default async function StorePage({ params }: StorePageProps) {
   }
 
   return (
-    <div className="max-w-site mx-auto px-4 py-8">
-      <div className="text-center">
-        <h1 className="text-2xl font-bold mb-2">@{profile.handle}</h1>
-        {profile.tagline && (
-          <p className="text-gray-500 mb-4">{profile.tagline}</p>
-        )}
-        {profile.bio && <p className="text-gray-600">{profile.bio}</p>}
-        <p className="text-sm text-gray-400 mt-8">
-          Full store page coming soon.
-        </p>
-      </div>
+    <div>
+      <StoreHeader profile={profile} />
+      <StoreProducts handle={handle} storeNodeId={profile.nodeId} />
     </div>
   );
 }

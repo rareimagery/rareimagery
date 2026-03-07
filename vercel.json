@@ -1,5 +1,6 @@
 {
   "installCommand": "cd frontend && npx -y pnpm@9 install --frozen-lockfile",
   "buildCommand": "cd frontend && npx -y pnpm@9 --filter @rareimagery/storefront build",
+  "outputDirectory": "frontend/apps/storefront/.next",
   "framework": "nextjs"
 }
