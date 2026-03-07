@@ -55,7 +55,7 @@ jobs:
 
             # Grant API permissions
             docker compose exec -T drupal vendor/bin/drush role:perm:add anonymous 'restful get store_list,restful get store_profile,restful get x_profile_preview'
-            docker compose exec -T drupal vendor/bin/drush role:perm:add authenticated 'restful get store_list,restful get store_profile,restful get x_profile_preview,restful post store_create'
+            docker compose exec -T drupal vendor/bin/drush role:perm:add authenticated 'restful get store_list,restful get store_profile,restful get x_profile_preview,restful post store_create,restful post subscription_checkout,restful post subscription_portal,restful get subscription_status'
             docker compose exec -T drupal vendor/bin/drush cr
 
             echo "Deploy complete at $(date)"
