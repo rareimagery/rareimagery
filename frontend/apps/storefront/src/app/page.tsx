@@ -1,15 +1,16 @@
 import { fetchStores } from '@rareimagery/api';
+import type { StoreSummary } from '@rareimagery/api';
 import { drupalServer } from '@/lib/drupal';
 import { StoreCardGrid } from '@/components/StoreCardGrid';
 
 export const revalidate = 600;
 
 export default async function CatalogPage() {
-  let stores;
+  let stores: StoreSummary[] = [];
   try {
     stores = await fetchStores(drupalServer);
   } catch {
-    stores = [];
+    // stores remains []
   }
 
   if (!stores || stores.length === 0) {
