@@ -1,0 +1,5 @@
+{
+  "installCommand": "cd ../.. && npx -y pnpm@9 install --frozen-lockfile",
+  "framework": "nextjs",
+  "nodeVersion": "22.x"
+}
