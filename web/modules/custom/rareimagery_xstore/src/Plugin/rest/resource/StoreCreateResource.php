@@ -138,8 +138,9 @@ class StoreCreateResource extends ResourceBase {
         'type' => 'x_creator_store',
         'title' => $displayName,
         'uid' => $this->currentUser->id(),
-        'status' => 1,
+        'status' => 0,
         'field_x_handle' => $handle,
+        'field_subscription_status' => 'pending',
         'field_x_bio' => $bio,
         'field_x_followers' => $profileData['followers'] ?? 0,
         'field_x_verified' => $profileData['verified'] ?? FALSE,
@@ -205,6 +206,7 @@ class StoreCreateResource extends ResourceBase {
       'tagline' => $node->get('field_x_tagline')->value ?? '',
       'commerceStoreId' => $commerceStore ? (int) $commerceStore->id() : NULL,
       'commerceStoreUuid' => $commerceStore ? $commerceStore->uuid() : NULL,
+      'subscriptionStatus' => $node->get('field_subscription_status')->value ?? 'pending',
     ];
 
     return new ModifiedResourceResponse($data, 201);

@@ -1,6 +1,6 @@
 'use client';
 
-const STEPS = ['Find Profile', 'Customize', 'Done'];
+const STEPS = ['Find Profile', 'Customize', 'Payment', 'Done'];
 
 interface WizardStepIndicatorProps {
   currentStep: number;

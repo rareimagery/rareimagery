@@ -73,6 +73,19 @@ export function DashboardLayout() {
       </nav>
 
       <main className="dashboard__content">
+        {store.subscriptionStatus && store.subscriptionStatus !== 'active' && (
+          <div className="dashboard__subscription-banner">
+            {store.subscriptionStatus === 'pending' && (
+              <p>Your store is not yet active. Complete payment to launch your store.</p>
+            )}
+            {store.subscriptionStatus === 'past_due' && (
+              <p>Your subscription payment failed. Update your payment method in Settings to reactivate your store.</p>
+            )}
+            {store.subscriptionStatus === 'canceled' && (
+              <p>Your subscription has been canceled. Your store is no longer visible to customers.</p>
+            )}
+          </div>
+        )}
         <Outlet context={{ store }} />
       </main>
     </div>

@@ -33,3 +33,12 @@ manage own x store:
 
 'restful post store_create':
   title: 'Create store via API'
+
+'restful post subscription_checkout':
+  title: 'Create subscription checkout session'
+
+'restful post subscription_portal':
+  title: 'Access subscription billing portal'
+
+'restful get subscription_status':
+  title: 'View subscription status'

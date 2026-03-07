@@ -8,19 +8,20 @@ use Drupal\rareimagery_xstore\Service\StoreManagerService;
 use Drupal\Core\Session\AccountProxyInterface;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 
 /**
- * Provides a current user's stores REST resource.
+ * Returns subscription status for a store.
  *
  * @RestResource(
- *   id = "current_user_store",
- *   label = @Translation("Current User Stores"),
+ *   id = "subscription_status",
+ *   label = @Translation("Subscription Status"),
  *   uri_paths = {
- *     "canonical" = "/api/dashboard/my-stores"
+ *     "canonical" = "/api/dashboard/stores/{store_nid}/subscription/status"
  *   }
  * )
  */
-class CurrentUserStoreResource extends ResourceBase {
+class SubscriptionStatusResource extends ResourceBase {
 
   protected StoreManagerService $storeManager;
   protected AccountProxyInterface $currentUser;
@@ -51,26 +52,18 @@ class CurrentUserStoreResource extends ResourceBase {
     );
   }
 
-  public function get(): ResourceResponse {
-    $uid = $this->currentUser->id();
-    $stores = $this->storeManager->getUserStores($uid);
-
-    $data = ['stores' => []];
-    foreach ($stores as $store_node) {
-      $commerce_store = $this->storeManager->getCommerceStore($store_node);
-
-      $data['stores'][] = [
-        'nodeId' => (int) $store_node->id(),
-        'uuid' => $store_node->uuid(),
-        'handle' => $store_node->get('field_x_handle')->value,
-        'storeName' => $store_node->getTitle(),
-        'commerceStoreId' => $commerce_store ? (int) $commerce_store->id() : NULL,
-        'stripeAccountId' => $store_node->hasField('field_stripe_account_id') ? $store_node->get('field_stripe_account_id')->value : NULL,
-        'printfulStoreId' => $store_node->hasField('field_x_printful_store_id') ? $store_node->get('field_x_printful_store_id')->value : NULL,
-        'subscriptionStatus' => $store_node->hasField('field_subscription_status') ? $store_node->get('field_subscription_status')->value : NULL,
-        'stripeCustomerId' => $store_node->hasField('field_stripe_customer_id') ? $store_node->get('field_stripe_customer_id')->value : NULL,
-      ];
+  public function get(int $store_nid): ResourceResponse {
+    if (!$this->storeManager->userOwnsStore($this->currentUser->id(), $store_nid)) {
+      throw new AccessDeniedHttpException('You do not own this store.');
     }
+
+    $storeNode = \Drupal::entityTypeManager()->getStorage('node')->load($store_nid);
+
+    $data = [
+      'status' => $storeNode->get('field_subscription_status')->value ?? 'pending',
+      'subscriptionId' => $storeNode->get('field_stripe_subscription_id')->value,
+      'customerId' => $storeNode->get('field_stripe_customer_id')->value,
+    ];
 
     $response = new ResourceResponse($data);
     $response->getCacheableMetadata()->addCacheContexts(['user']);

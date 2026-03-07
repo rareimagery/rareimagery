@@ -112,7 +112,7 @@ class StoreManagerService {
     $nids = $this->entityTypeManager
       ->getStorage('node')
       ->getQuery()
-      ->accessCheck(TRUE)
+      ->accessCheck(FALSE)
       ->condition('type', 'x_creator_store')
       ->condition('uid', $uid)
       ->sort('created', 'DESC')

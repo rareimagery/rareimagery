@@ -10,7 +10,7 @@ export default function SuccessPage() {
 
   return (
     <>
-      <WizardStepIndicator currentStep={3} />
+      <WizardStepIndicator currentStep={4} />
 
       <div className="text-center py-8">
         <div className="w-16 h-16 mx-auto mb-6 bg-green-100 rounded-full flex items-center justify-center">

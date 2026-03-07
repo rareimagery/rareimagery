@@ -53,3 +53,10 @@ services:
     arguments: ['@rareimagery_xstore.printful_sync']
     tags:
       - { name: event_subscriber }
+
+  rareimagery_xstore.subscription_manager:
+    class: Drupal\rareimagery_xstore\Service\SubscriptionManagerService
+    arguments:
+      - '@entity_type.manager'
+      - '@config.factory'
+      - '@logger.factory'

@@ -20,8 +20,8 @@ export default function CustomizePage() {
 
   const handleCreate = (data: StoreCreateRequest) => {
     createStore.mutate(data, {
-      onSuccess: () => {
-        router.push(`/create/success?handle=${handle}`);
+      onSuccess: (response) => {
+        router.push(`/create/payment?handle=${handle}&storeNodeId=${response.nodeId}`);
       },
     });
   };

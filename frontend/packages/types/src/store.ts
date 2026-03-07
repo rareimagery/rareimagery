@@ -15,6 +15,8 @@ export interface CreatorStore {
   commerceStoreUuid: string;
   stripeAccountId?: string;
   printfulStoreId?: string;
+  subscriptionStatus?: 'pending' | 'active' | 'past_due' | 'canceled' | null;
+  stripeCustomerId?: string;
 }
 
 export interface XProfilePreview {

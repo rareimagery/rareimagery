@@ -1,6 +1,7 @@
 import { useOutletContext } from 'react-router-dom';
 import type { CreatorStore } from '@rareimagery/types';
 import { StoreSettingsForm } from '../components/StoreSettingsForm';
+import { SubscriptionBilling } from '../components/SubscriptionBilling';
 import { StripeOnboarding } from '../components/StripeOnboarding';
 import { PrintfulSyncButton } from '../components/PrintfulSyncButton';
 
@@ -14,6 +15,14 @@ export function SettingsPage() {
       <section className="dashboard__settings-section">
         <h2>Store Branding</h2>
         <StoreSettingsForm store={store} />
+      </section>
+
+      <section className="dashboard__settings-section">
+        <h2>Subscription</h2>
+        <SubscriptionBilling
+          storeNodeId={store.nodeId}
+          subscriptionStatus={store.subscriptionStatus}
+        />
       </section>
 
       <section className="dashboard__settings-section">

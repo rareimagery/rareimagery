@@ -23,6 +23,14 @@ rareimagery_xstore.printful_webhook:
     _access: 'TRUE'
   methods: [POST]
 
+rareimagery_xstore.stripe_subscription_webhook:
+  path: '/api/stripe/subscription-webhook'
+  defaults:
+    _controller: '\Drupal\rareimagery_xstore\Controller\StripeSubscriptionWebhookController::handle'
+  requirements:
+    _access: 'TRUE'
+  methods: [POST]
+
 rareimagery_xstore.dashboard:
   path: '/dashboard'
   defaults:

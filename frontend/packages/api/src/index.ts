@@ -8,6 +8,16 @@ export { useOrders, useOrder } from './hooks/useOrderApi';
 export { useTaxonomyTerms } from './hooks/useTaxonomyApi';
 
 export { useXProfilePreview, useCreateStore } from './hooks/useStoreCreateApi';
+export {
+  useSubscriptionCheckout,
+  useSubscriptionPortal,
+  useSubscriptionStatus,
+} from './hooks/useSubscriptionApi';
+export type {
+  SubscriptionCheckoutResponse,
+  SubscriptionPortalResponse,
+  SubscriptionStatusResponse,
+} from './hooks/useSubscriptionApi';
 
 // Server-side exports (for Next.js server components)
 export { DrupalServerClient } from './server-client';
