@@ -31,6 +31,14 @@ rareimagery_xstore.stripe_subscription_webhook:
     _access: 'TRUE'
   methods: [POST]
 
+rareimagery_xstore.xai_settings:
+  path: '/admin/config/ai/providers/x'
+  defaults:
+    _form: '\Drupal\rareimagery_xstore\Form\XaiSettingsForm'
+    _title: 'xAI / Grok Settings'
+  requirements:
+    _permission: 'administer x creator stores'
+
 rareimagery_xstore.dashboard:
   path: '/dashboard'
   defaults:
