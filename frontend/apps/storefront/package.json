@@ -10,12 +10,14 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@ai-sdk/xai": "^3.0.67",
     "@rareimagery/api": "workspace:*",
     "@rareimagery/types": "workspace:*",
     "@rareimagery/ui": "workspace:*",
     "@stripe/react-stripe-js": "^3.1.0",
     "@stripe/stripe-js": "^5.5.0",
     "@tanstack/react-query": "^5.62.0",
+    "ai": "^6.0.116",
     "next": "15.1.6",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
