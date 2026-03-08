@@ -13,6 +13,7 @@
     "require": {
         "composer/installers": "^2.0",
         "drupal/admin_toolbar": "^3.5",
+        "drupal/ai": "^1.2",
         "drupal/color_field": "^3.0",
         "drupal/commerce": "^3.0",
         "drupal/commerce_file": "^2.0",
