@@ -32,7 +32,7 @@ rareimagery_xstore.stripe_subscription_webhook:
   methods: [POST]
 
 rareimagery_xstore.xai_settings:
-  path: '/admin/config/ai/providers/x'
+  path: '/admin/config/rareimagery/xai'
   defaults:
     _form: '\Drupal\rareimagery_xstore\Form\XaiSettingsForm'
     _title: 'xAI / Grok Settings'
