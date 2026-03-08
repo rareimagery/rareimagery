@@ -15,6 +15,7 @@ jobs:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
+          command_timeout: 10m
           script: |
             set -e
             APP_DIR="/opt/rareimagery"
@@ -28,11 +29,13 @@ jobs:
             git fetch origin main
             git reset --hard origin/main
 
-            # Configure host Nginx reverse proxy to Docker
-            sudo cp "$APP_DIR/docker/host-nginx/rareimagery.conf" /etc/nginx/sites-available/rareimagery
-            sudo ln -sf /etc/nginx/sites-available/rareimagery /etc/nginx/sites-enabled/rareimagery
-            sudo rm -f /etc/nginx/sites-enabled/default
-            sudo nginx -t && sudo systemctl reload nginx
+            # Configure host Nginx reverse proxy to Docker (non-fatal)
+            if [ -f "$APP_DIR/docker/host-nginx/rareimagery.conf" ]; then
+              sudo cp "$APP_DIR/docker/host-nginx/rareimagery.conf" /etc/nginx/sites-available/rareimagery || true
+              sudo ln -sf /etc/nginx/sites-available/rareimagery /etc/nginx/sites-enabled/rareimagery || true
+              sudo rm -f /etc/nginx/sites-enabled/default || true
+              sudo nginx -t && sudo systemctl reload nginx || echo "WARNING: Nginx config failed, skipping"
+            fi
 
             # Build and restart containers
             docker compose build
@@ -41,11 +44,13 @@ jobs:
             # Wait for Drupal container to be ready
             sleep 10
 
-            # Post-deploy: rebuild autoloader, clear cache, run DB updates
-            docker compose exec -T drupal composer dump-autoload
+            # Install composer dependencies (picks up new packages)
+            docker compose exec -T drupal composer install --no-interaction --no-dev --optimize-autoloader
+
+            # Post-deploy: clear cache, run DB updates, enable modules
             docker compose exec -T drupal vendor/bin/drush cr
             docker compose exec -T drupal vendor/bin/drush updb -y
-            docker compose exec -T drupal vendor/bin/drush en ai rareimagery_ai -y
+            docker compose exec -T drupal vendor/bin/drush en ai rareimagery_ai -y || true
 
             # Import any new REST resource configs from config/install
             docker compose exec -T drupal vendor/bin/drush php:eval '
