@@ -19,6 +19,8 @@ export type {
   SubscriptionStatusResponse,
 } from './hooks/useSubscriptionApi';
 
+export { useXProfile, useXPosts, useGenerateStoreContent, useGenerateProductDescription } from './hooks/useXaiApi';
+
 // Server-side exports (for Next.js server components)
 export { DrupalServerClient } from './server-client';
 export { fetchStores, fetchStoreProfile } from './fetchers';
