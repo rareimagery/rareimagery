@@ -45,6 +45,7 @@ jobs:
             docker compose exec -T drupal composer dump-autoload
             docker compose exec -T drupal vendor/bin/drush cr
             docker compose exec -T drupal vendor/bin/drush updb -y
+            docker compose exec -T drupal vendor/bin/drush en rareimagery_ai -y
 
             # Import any new REST resource configs from config/install
             docker compose exec -T drupal vendor/bin/drush php:eval '
