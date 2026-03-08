@@ -36,7 +36,8 @@ jobs:
             # Wait for Drupal container to be ready
             sleep 10
 
-            # Post-deploy: clear cache and run DB updates
+            # Post-deploy: rebuild autoloader, clear cache, run DB updates
+            docker compose exec -T drupal composer dump-autoload
             docker compose exec -T drupal vendor/bin/drush cr
             docker compose exec -T drupal vendor/bin/drush updb -y
 
